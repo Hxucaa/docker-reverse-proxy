@@ -26,7 +26,7 @@ services:
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
-      - "/mnt/docker-host/nginx-reverse-proxy/certs:/etc/nginx/certs:ro"
+      - "/opt/vm-data/nginx-reverse-proxy/certs:/etc/nginx/certs:ro"
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
 
@@ -69,6 +69,6 @@ services:
       - nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/mnt/docker-host/nginx-reverse-proxy/certs:/etc/nginx/certs:rw"
+      - "/opt/vm-data/nginx-reverse-proxy/certs:/etc/nginx/certs:rw"
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
