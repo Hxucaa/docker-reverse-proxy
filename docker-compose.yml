@@ -17,11 +17,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 192.168.163.19:24224
-    #     tag: nginx
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://192.168.163.19:21455
     volumes:
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
@@ -39,11 +38,10 @@ services:
       - nginx
     networks: 
       - nginx-proxy
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 192.168.163.19:24224
-    #     tag: nginx-gen
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://192.168.163.19:21455
     volumes_from:
       - nginx
     volumes:
@@ -60,11 +58,10 @@ services:
       - nginx-gen
     networks: 
       - nginx-proxy
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 192.168.163.19:24224
-    #     tag: letsencrypt
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://192.168.163.19:21455
     volumes_from:
       - nginx
     volumes:
